@@ -1,0 +1,35 @@
+.bookingTable .slds-cell-fixed {
+    background: #1371d5;
+}
+
+.bookingTable .slds-th__action {
+    color: white;
+	background: #1371d5;
+    justify-content: center !important;
+	padding: 0px;
+}
+
+.bookingTable   .slds-has-focus .slds-th__action, .slds-th__action:focus, .slds-th__action:hover {
+	background-color: #1371d5;
+	padding: 0px;
+	background: #1371d5;
+}
+
+.bookingTable .slds-table .slds-row-number{
+	display: none;
+	padding: 0px;
+	
+}
+
+.bookingTable .slds-table tr th:first-child{
+	display: hidden;
+	padding: 0px;
+}
+
+.bookingTable .slds-scrollable_x, .slds-scrollable--x {
+	background-color: white
+}
+
+.navigation .slds-nav-vertical__title{
+	display: none;
+}

@@ -1,0 +1,26 @@
+<template>
+    <H2>Case Drag Drop Coming Right Up</H2>
+
+    <lightning-card title="Drag Cases">
+        <template for:each={cases.data} for:item="onecase" if:true={cases.data} >
+            <div class="slds-mtop_medium slds slds-m-bottom_x-small" key={onecase.id}
+                draggable="true"
+                data-item={onecase.id} > 
+
+                <lightning-tile label={onecase.Subject} type="media" class="border_style" >
+                    <lightning-icon slot="media" icon-name="standard:account"></lightning-icon>
+                    <p class="slds-truncate" title="7 Members"> Type: {onecase.Type} </p>
+                </lightning-tile>     
+            </div>    
+        </template>
+
+        <lightning-card icon-name="standard:account" title="Account" 
+            ondrop={dropElelment} ondragover={allowDrop}>
+        
+            <div style="text-align: center;">{message}</div>
+
+        </lightning-card>
+    
+    
+    </lightning-card>
+</template>

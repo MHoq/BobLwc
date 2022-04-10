@@ -1,0 +1,11 @@
+<template>
+
+    <div class="slds-text-heading_large">Javascript Array of Objects in Iteration</div>
+
+    <template for:each={lstAccounts} for:item="acc">
+        <p key={acc.Id} style="display:inline">
+            <lightning-badge label={acc.Name}></lightning-badge>
+        </p>
+    </template>
+    
+</template>

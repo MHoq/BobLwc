@@ -1,0 +1,20 @@
+<template>
+    <h2>Test Accounts</h2>
+    <div style="height: 450px;">
+        <lightning-datatable
+                key-field="id"
+                data={data}
+                columns={columns}
+                onrowselection={getSelectedName}
+                enable-infinite-loading
+                onloadmore={loadMoreData}
+                onrowaction={handleRowAction}
+                is-loading={tableLoadingState}
+                onsave={handleSave}
+                draft-values={draftValues}
+                onsort={updateColumnSorting}
+                >
+        </lightning-datatable>
+        {loadMoreStatus}
+    </div>    
+</template>

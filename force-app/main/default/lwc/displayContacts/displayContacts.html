@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="My contacts" icon-name="custom:custom9">
+        <lightning-layout vertical-align="center">
+            <lightning-layout-item padding="around-small">
+
+                {greeting}
+
+            </lightning-layout-item>
+
+
+            <lightning-layout-item padding="around-small">
+
+                <template for:each={contacts} for:item="c" for:index="index">
+
+                    <p key={c.id}>{index}</p> 
+
+                    {c.Name}
+                    
+                </template>
+
+            </lightning-layout-item>
+
+            <lightning-layout-item padding="around-small">
+            <lightning-card title="Account List using for:each" icon-name="custom:custom63">
+                <div class="slds-m-around_medium">
+                    <template if:true={contacts}>
+                        <template for:each={contacts} for:item="c" for:index="index">
+
+                            <p key={c.id}>{index}</p> 
+        
+                            {c.Name}
+                            
+                        </template>
+                    </template>
+
+                </div>
+            </lightning-card>            
+        </lightning-layout-item>
+        </lightning-layout>   
+    </lightning-card>
+</template>

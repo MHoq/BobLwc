@@ -1,0 +1,86 @@
+<template>
+
+     <lightning-tabset active-tab-value="one">
+        <lightning-tab label="Vendor" value="one">           
+            <lightning-card title="Vendor Search">
+                <div class="slds-m-around_medium">
+
+                <lightning-card title="Search Records" >
+                <div class="c-container">
+                    <lightning-layout horizontal-align="space">
+                        <lightning-layout-item flexibility="auto" padding="around-small" size="3">
+                            <lightning-input type="text" name="accName" label="Account Name" placeholder="type here..." 
+                            value={accName} data-id="Search_Acc" onchange={handleKeyChange}></lightning-input>
+                        </lightning-layout-item>
+                        <lightning-layout-item flexibility="auto" padding="around-small" size="2">
+                            <template if:true={industryValues.data}>
+                                <lightning-combobox
+                                    name="Industry"
+                                    label="Industry"
+                                    value={industryValue}
+                                    placeholder="Select Industry"
+                                    options={industryValues.data.values}
+                                    onchange={handleChange} >
+                                </lightning-combobox>
+                            </template>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item padding="around-small" size="2" >
+                            <lightning-input name="EffectiveDate" label='Effective Date' type="date" date-style="short" class="EffectiveDate"
+                                onchange={onBookDateSelect} required
+                                message-when-pattern-mismatch="MM/DD/YYYY"
+                                message-when-bad-input="MM/DD/YYYY">
+                            </lightning-input>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item flexibility="auto" padding="around-small" size="2">
+                        
+                        <lightning-checkbox-group 
+                                        class="checkboxClass .slds-form-element__control"
+                                        name="Service Type"
+                                        label="Service Type"
+                                        options={options}
+                                        value={valuemulti}
+                                        onchange={handleCheckGroupChange}>
+                            </lightning-checkbox-group>
+                            
+                        
+                        </lightning-layout-item>               
+                        <lightning-layout-item flexibility="auto" padding="around-small" size="2">
+                            <div style="height: 20px;"></div>
+                            <lightning-button variant="brand" label="Search Records" title="Search Records" data-id="Search_Button"
+                            onclick={handleSearch} class="slds-m-left_x-small"></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </lightning-card>  
+                    <lightning-datatable key-field="Id" data={data} columns={columns} sorted-by={sortedBy}
+                        sorted-direction={sortedDirection} onsort={sortColumns}>
+                    </lightning-datatable>
+                    </br>
+                    <lightning-layout horizontal-align="space">
+                        <lightning-layout-item flexibility="auto">
+                            <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler}>
+                            </lightning-button>
+                        </lightning-layout-item>
+                        <lightning-layout-item flexibility="auto">
+                            Page {page} of {totalPage}
+                        </lightning-layout-item>
+                        <lightning-layout-item flexibility="auto">
+                            <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right"
+                                onclick={nextHandler}></lightning-button>
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </div>
+            </lightning-card>
+        </lightning-tab>
+        <lightning-tab label="Product" value="two">
+            <c-hello-expressions>  </c-hello-expressions>
+            Product Selection Content - TEST
+        </lightning-tab>
+        <lightning-tab label="RM Selection" value="three">
+            RM Selection Content !
+        </lightning-tab>
+    </lightning-tabset>
+
+</template>

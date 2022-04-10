@@ -1,0 +1,3 @@
+checkboxClass .slds-form-element__control{
+    display: inline-flex;
+}

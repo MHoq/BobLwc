@@ -1,0 +1,39 @@
+.bluecolor{
+    background: #1371d5
+}
+
+.blueTextcolor{
+    color: #1371d5
+}
+
+.whitecolor{
+    color:white
+}
+
+.whitebackground{
+    background-color:white
+}
+
+.custom-box {
+    background-color: #f4f6f9;
+}
+
+.whiteborder{
+    border-color: white;
+}
+
+.blueborder{
+    border-color: #1371d5;
+}
+
+.refreshicn{
+    --sds-c-icon-color-foreground-default: white; 
+ }
+
+.blueicons{
+    --sds-c-icon-color-foreground-default: #1371d5; 
+}
+
+.modalBody{
+    position: relative;
+}

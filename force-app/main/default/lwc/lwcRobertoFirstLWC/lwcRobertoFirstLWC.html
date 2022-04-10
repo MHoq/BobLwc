@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="HelloWorld" icon-name="custom:custom14">
+        <div class="slds-m-around_medium">
+            <p>Hello, {greeting}!!</p>
+            <p>Hello, {label.lwc_custom_label}!!</p>
+            <lightning-input label="Name" value={greeting} onchange={changeHandler}></lightning-input>
+        </div>
+        <div class="elementHoldingHTMLContent" lwc:dom="manual">
+        </div>
+    </lightning-card>
+
+    <lightning-button variant="base" label="Inject HTML" title="Looks like a link" onclick={inputHandler} class="slds-m-left_x-small"></lightning-button>
+
+    <c-preview-dialog> 
+        <span slot="body">Modal Body</span>
+    </c-preview-dialog>
+
+</template>

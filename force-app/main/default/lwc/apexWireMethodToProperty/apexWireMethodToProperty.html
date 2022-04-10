@@ -1,0 +1,18 @@
+<template>
+    <lightning-card title="ApexWireMethodToProperty" icon-name="custom:custom63">
+        <div class="slds-var-m-around_medium">
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <div key={contact.id} class="slds-grid slds-wrap">
+                        <div class="slds-1-of-3 slds-var-p-horizontal_large">
+                            <strong>Name: </strong>{contact.Name} </div>
+                            <div class="slds-1-of-3 slds-var-p-horizontal_large">
+                                <strong>Title: </strong>{contact.Title}</div>    
+                    </div>             
+                </template>
+            </template>
+            <template if:true={contacts.error}>            
+            </template>
+        </div>
+    </lightning-card>    
+</template>

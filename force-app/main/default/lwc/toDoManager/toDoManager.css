@@ -1,0 +1,15 @@
+p {
+    font-size: xx-large;
+}
+
+.time {
+    color: green;
+    font-weight: bold;
+    font-size: 4rem;
+  }
+
+  .greetings {
+    color: darkslateblue;
+    font-weight: bold;
+    font-size: 2rem;
+  }

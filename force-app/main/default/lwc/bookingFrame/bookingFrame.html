@@ -1,0 +1,161 @@
+<template>
+
+
+    <!--<lightning-spinner if:true={isLoading} alternative-text="Loading..." variant="brand" size="large"></lightning-spinner>-->
+
+
+    <!--Header-->
+    <div class="slds-p-horizontal_x-small">
+        <div class="slds-box slds-box_x-small blueborder slds-text-align_center blueTextcolor slds-text-title_bold">            
+            <lightning-layout >
+                <lightning-layout-item flexibility="auto">
+                    <p>{headerMessage}</p>
+                </lightning-layout-item>
+            
+                <template if:true={addICN}>
+                    <lightning-layout-item flexibility="auto, no-grow" class="slds-align_absolute-center">
+                        <lightning-icon icon-name="utility:add" class="blueicons slds-m-right_small" onclick={onaddClick} size="x-small">
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </template>
+
+                <template if:true={refreshICN}>
+                    <lightning-layout-item flexibility="auto, no-grow" class="slds-align_absolute-center">
+                        <lightning-icon icon-name="utility:refresh" class="blueicons slds-m-right_small" onclick={onrefreshClick} size="x-small">
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </template>
+
+                <template if:true={saveICN}>
+                    <lightning-layout-item flexibility="auto, no-grow" class="slds-align_absolute-center">
+                        <lightning-icon icon-name="utility:save" class="blueicons" onclick={onsaveClick} size="x-small">
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </template>
+
+            </lightning-layout>
+        </div>
+    </div>
+    
+    <!--Table-->
+    <!-- <lightning-layout>
+            <template if:false={viewTABLE}>
+                <div class="bookingTable slds-m-around_x-small" style="height: 450px;"> 
+                <lightning-datatable 
+                    key-field="Id"
+                    data={tableDATA.data}
+                    columns={columns}
+                    onsave={handleSave}
+                    draft-values={draftValues}
+                    hide-checkbox-column
+                    show-row-number-column="false"
+                    resize-column-disabled="true">
+                </lightning-datatable>
+                </div>
+            </template>
+            
+            <div class="slds-align_absolute-center slds-m-top_xx-large slds-text-title_bold">
+                <p>{noDATAFound}</p>
+            </div>
+            
+    </lightning-layout> -->
+
+
+
+    <template if:true={allocPopUp}>
+        <section aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container ">
+                <header class="slds-modal__header bluecolor">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                        onclick={onclosepopUP}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate whitecolor">Create Reservation / Booking</h2>
+                </header>
+                <div class="slds-modal__content modalBody slds-p-around_medium">
+                    
+                    <lightning-layout multiple-rows>
+
+                        <lightning-layout-item padding="around-small" size="6" small-device-size="6" medium-device-size="4" large-device-size="6">
+                            <lightning-input name="BookDate" label='Book Date' type="date" date-style="short" class="BookDate"
+                                onchange={onBookDateSelect} required
+                                message-when-pattern-mismatch="MM/DD/YYYY"
+                                message-when-bad-input="MM/DD/YYYY">
+                            </lightning-input>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item padding="around-small" size="6" small-device-size="6" medium-device-size="4" large-device-size="6">
+                            <lightning-input name="DueDate" label='Due Date' type="date" date-style="short"
+                                onchange={onDueDateSelect} required
+                                message-when-pattern-mismatch="MM/DD/YYYY"
+                                message-when-bad-input="MM/DD/YYYY">
+                            </lightning-input>
+                        </lightning-layout-item>
+                    </lightning-layout>
+
+                    <div class="slds-p-around_small">
+                        <c-search-component obj-name="Account" placeholder="Search Customer..."
+                                selected-record={accountRecord} label-name="Customer Name" required="Customer Name"
+                                fields={fields} display-fields={displayFields} onlookup={handleLookup} onpasstoparent={handleClose}>
+                        </c-search-component>
+                    </div>
+
+                    <template if:true={popisLoading}>
+                        <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass" variant="brand"></lightning-spinner>
+                    </template>
+                    
+
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item padding="around-small" size="6" small-device-size="6" medium-device-size="4" large-device-size="6">
+                            <lightning-combobox name="Facility Name" label='Facility Name' options={facilityOptions} 
+                                onchange={onpopupFacilitySelect} required >
+                            </lightning-combobox>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item padding="around-small" size="6" small-device-size="6" medium-device-size="4" large-device-size="6">
+                            <lightning-combobox name="Product Group" label='Product Group' options={productGRP} value={popPrdtGrp}
+                                onchange={onpopupGroupSelect} required>
+                            </lightning-combobox>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item padding="around-small" size="6" small-device-size="6" medium-device-size="4" large-device-size="6">
+                            <lightning-input name="Reserved Lbs" label='Reserved Lbs' type="number"
+                                onchange={onpopupReserve}>
+                            </lightning-input>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item padding="around-small" size="6" small-device-size="6" medium-device-size="4" large-device-size="6">
+                            <lightning-input name="Booked Lbs" label='Booked Lbs' type="number"
+                                onchange={onpopupBooked}>
+                            </lightning-input>
+                        </lightning-layout-item>
+                    </lightning-layout>
+
+                    <br/>
+
+                    <template if:true={showLbs}>
+                        <div class="slds-box slds-m-horizontal_small slds-box_x-small slds-text-align_center">
+                            {poundsRemaining}
+                        </div>
+                    </template>
+
+                    <br/>
+                    <br/>
+
+                </div>
+
+                <footer class="slds-modal__footer whitebackground">
+                    <lightning-button class="slds-align_absolute-center" name="save" label="Save" variant="brand" onclick={onpopSave}></lightning-button>
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+
+        
+</template>

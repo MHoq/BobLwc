@@ -1,0 +1,20 @@
+<template>
+    <lightning-datatable
+        key-field="id"
+        data={fetchedContacts}
+        columns={columns}
+    >
+    </lightning-datatable>
+
+    <label>Select the fields you want to display in the Data Table</label>
+    <select class="slds-select" name="optionSelect" multiple>
+        <template for:each={wiredContactFields.data} for:item="field">
+            <option key={field} value={field}>{field}</option>
+        </template>
+    </select>
+
+    <lightning-button
+        label="Looks Fine"
+        onclick={handleSelectedFields}
+    ></lightning-button>
+</template>
