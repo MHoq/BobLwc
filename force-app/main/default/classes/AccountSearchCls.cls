@@ -2,7 +2,7 @@ public with sharing class AccountSearchCls {
     public AccountSearchCls() {
 
     }
-    /*20Percent*/
+    /*20Percent.*/
     @AuraEnabled(cacheable=true)
     public static List<Account>  getAccounts(String actName){
         String keyString = '%'+actName+'%';
